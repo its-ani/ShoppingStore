@@ -12,5 +12,4 @@ public class CreateProductRequestDto {
     private  String category;
     private  double price;
     private  int userId;
-
 }

@@ -6,9 +6,6 @@ import dev.anirudh.productservicenov24.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -22,23 +19,18 @@ public class FakeStoreProductService implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        FakeStoreProductDto[] fakeStoreProductDtoArray = restTemplate.getForObject("https://fakestoreapi.com/products", FakeStoreProductDto[].class);
-        if (fakeStoreProductDtoArray == null) {
-            return new ArrayList<>();
-        }
-        List<FakeStoreProductDto> fakeStoreProductDtosList = Arrays.asList(fakeStoreProductDtoArray);
-        return new FakeStoreProductDto().toBulkProduct(fakeStoreProductDtosList);
+        return null;
     }
 
     public Product getSingleProduct(long id){
+//        https://fakestoreapi.com/products/1
         FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
         return fakeStoreProductDto.toProduct();
     }
 
     @Override
     public Product createProduct(CreateProductRequestDto createProductRequestDto){
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.postForObject("https://fakestoreapi.com/products", createProductRequestDto, FakeStoreProductDto.class);
-        return fakeStoreProductDto.toProduct();
+        return null;
     }
 
 }
