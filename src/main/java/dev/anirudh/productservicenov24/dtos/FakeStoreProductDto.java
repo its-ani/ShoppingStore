@@ -6,6 +6,9 @@ import dev.anirudh.productservicenov24.services.ProductService;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class FakeStoreProductDto {
@@ -14,6 +17,7 @@ public class FakeStoreProductDto {
     private  String image;
     private  String category;
     private  double price;
+
 
     public Product toProduct(){
         Product product = new Product();
@@ -26,6 +30,15 @@ public class FakeStoreProductDto {
         product.setCategory(category1);
 
         return product;
+    }
+
+    public List<Product> toBulkProduct(List<FakeStoreProductDto> products){
+        List<Product> productArrayList = new ArrayList<>();
+
+        for (FakeStoreProductDto prod: products){
+            productArrayList.add(prod.toProduct());
+        }
+        return productArrayList;
     }
 
 }
