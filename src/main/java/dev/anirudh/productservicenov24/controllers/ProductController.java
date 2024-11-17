@@ -4,7 +4,6 @@ import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.models.Product;
 import dev.anirudh.productservicenov24.services.ProductService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -35,5 +34,4 @@ public class ProductController {
                 createProductRequestDto.getCategory(),
                 createProductRequestDto.getPrice());
     }
-
 }
