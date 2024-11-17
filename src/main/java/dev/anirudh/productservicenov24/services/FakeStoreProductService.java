@@ -3,6 +3,8 @@ package dev.anirudh.productservicenov24.services;
 import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.dtos.FakeStoreProductDto;
 import dev.anirudh.productservicenov24.models.Product;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,7 +37,18 @@ public class FakeStoreProductService implements ProductService{
 
     public Product getSingleProduct(long id){
 //        https://fakestoreapi.com/products/1
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
+//        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
+        ResponseEntity<FakeStoreProductDto> fakeStoreProductDtoResponseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
+
+        if(fakeStoreProductDtoResponseEntity.getStatusCode() != HttpStatusCode.valueOf(200)){
+            //handle exception later on
+        }
+
+        FakeStoreProductDto fakeStoreProductDto = fakeStoreProductDtoResponseEntity.getBody();
+        if(fakeStoreProductDto == null){
+            return null;
+        }
+
         return fakeStoreProductDto.toProduct();
     }
 
