@@ -2,6 +2,7 @@ package dev.anirudh.productservicenov24.services;
 
 import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.dtos.FakeStoreProductDto;
+import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
 import dev.anirudh.productservicenov24.models.Product;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class FakeStoreProductService implements ProductService{
         return products;
     }
 
-    public Product getSingleProduct(long id){
+    public Product getSingleProduct(long id) throws ProductNotFoundException {
 //        https://fakestoreapi.com/products/1
 //        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
         ResponseEntity<FakeStoreProductDto> fakeStoreProductDtoResponseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
@@ -46,7 +47,7 @@ public class FakeStoreProductService implements ProductService{
 
         FakeStoreProductDto fakeStoreProductDto = fakeStoreProductDtoResponseEntity.getBody();
         if(fakeStoreProductDto == null){
-            return null;
+            throw new ProductNotFoundException("Product with id " + id + " is not found. It is invalid id");
         }
 
         return fakeStoreProductDto.toProduct();
