@@ -5,6 +5,7 @@ import dev.anirudh.productservicenov24.dtos.ErrorDTO;
 import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
 import dev.anirudh.productservicenov24.models.Product;
 import dev.anirudh.productservicenov24.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ProductController {
     public ProductService productService;
 
 //    Injecting dependencies
-    public ProductController(ProductService productService){
+    public ProductController(@Qualifier("selfProductService") ProductService productService){
         this.productService = productService;
     }
 
