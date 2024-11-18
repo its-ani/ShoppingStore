@@ -36,7 +36,7 @@ public class FakeStoreProductService implements ProductService{
         return products;
     }
 
-    public Product getSingleProduct(long id) throws ProductNotFoundException {
+    public Product getSingleProduct(long id) {
 //        https://fakestoreapi.com/products/1
 //        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
         ResponseEntity<FakeStoreProductDto> fakeStoreProductDtoResponseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
@@ -46,9 +46,9 @@ public class FakeStoreProductService implements ProductService{
         }
 
         FakeStoreProductDto fakeStoreProductDto = fakeStoreProductDtoResponseEntity.getBody();
-        if(fakeStoreProductDto == null){
-            throw new ProductNotFoundException("Product with id " + id + " is not found. It is invalid id");
-        }
+//        if(fakeStoreProductDto == null){
+//            throw new ProductNotFoundException("Product with id " + id + " is not found. It is invalid id");
+//        }
 
         return fakeStoreProductDto.toProduct();
     }

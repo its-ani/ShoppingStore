@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") long id) {
         Product p = productService.getSingleProduct(id);
         ResponseEntity<Product> responseEntity;
         if(p != null){
@@ -49,11 +49,11 @@ public class ProductController {
                 createProductRequestDto.getPrice());
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ErrorDTO> handleProductNotFoundException(ProductNotFoundException productNotFoundException){
-        ErrorDTO errorDTO = new ErrorDTO();
-        errorDTO.setMessage(productNotFoundException.getMessage());
-
-        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
-    }
+//    @ExceptionHandler(ProductNotFoundException.class)
+//    public ResponseEntity<ErrorDTO> handleProductNotFoundException(ProductNotFoundException productNotFoundException){
+//        ErrorDTO errorDTO = new ErrorDTO();
+//        errorDTO.setMessage(productNotFoundException.getMessage());
+//
+//        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
+//    }
 }
