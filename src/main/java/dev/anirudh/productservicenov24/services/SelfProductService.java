@@ -1,5 +1,6 @@
 package dev.anirudh.productservicenov24.services;
 
+import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
 import dev.anirudh.productservicenov24.models.Category;
 import dev.anirudh.productservicenov24.models.Product;
 import dev.anirudh.productservicenov24.repositiories.CategoryRepository;
@@ -7,6 +8,7 @@ import dev.anirudh.productservicenov24.repositiories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("selfProductService")
 public class SelfProductService implements ProductService {
@@ -24,12 +26,16 @@ public class SelfProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return List.of();
+        return productRepository.findAll();
     }
 
     @Override
-    public Product getSingleProduct(long id) {
-        return null;
+    public Product getSingleProduct(long id) throws ProductNotFoundException {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()) {
+            throw new ProductNotFoundException("Product with id "+ id + "is not present in the database.");
+        }
+        return product.get();
     }
 
     @Override
