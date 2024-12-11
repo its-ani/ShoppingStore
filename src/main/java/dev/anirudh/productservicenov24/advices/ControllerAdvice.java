@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-
+//used to through local exception through this Controller Advice. Once place for exceptions across your code.
 @org.springframework.web.bind.annotation.RestControllerAdvice
 public class ControllerAdvice {
     @ExceptionHandler(ProductNotFoundException.class)

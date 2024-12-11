@@ -57,4 +57,8 @@ public class ProductController {
 //
 //        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 //    }
+//    @GetMapping("/homePage/{text}")
+//    public String homePage(){
+//
+//    }
 }

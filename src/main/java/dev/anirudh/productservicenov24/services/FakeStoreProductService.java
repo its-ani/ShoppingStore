@@ -15,11 +15,11 @@ import java.util.List;
 @Service("fakeProductService")
 public class FakeStoreProductService implements ProductService{
 
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate; //using this we will be able to call 3rd party APIs.
 
-    public FakeStoreProductService(RestTemplate restTemplate){
-        this.restTemplate = restTemplate;
-    }
+//    public FakeStoreProductService(RestTemplate restTemplate){
+//        this.restTemplate = restTemplate;
+//    }
 
     @Override
     public List<Product> getAllProducts() {
