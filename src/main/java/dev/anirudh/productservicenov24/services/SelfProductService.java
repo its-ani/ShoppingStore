@@ -22,6 +22,7 @@ public class SelfProductService implements ProductService {
         this.productRepository = productRepository;
     }
 
+//    public List<Product> findByCategory() {}
 
 
     @Override
