@@ -55,16 +55,4 @@ public class ProductController {
     public Product deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException {
         return productService.setDelete(id);
     }
-
-//    @ExceptionHandler(ProductNotFoundException.class)
-//    public ResponseEntity<ErrorDTO> handleProductNotFoundException(ProductNotFoundException productNotFoundException){
-//        ErrorDTO errorDTO = new ErrorDTO();
-//        errorDTO.setMessage(productNotFoundException.getMessage());
-//
-//        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
-//    }
-//    @GetMapping("/homePage/{text}")
-//    public String homePage(){
-//
-//    }
 }
