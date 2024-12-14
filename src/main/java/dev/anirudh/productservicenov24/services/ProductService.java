@@ -14,4 +14,6 @@ public interface ProductService {
                           String image,
                           String category,
                           double price);
+
+    Product setDelete(long id) throws ProductNotFoundException;
 }

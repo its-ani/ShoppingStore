@@ -67,4 +67,13 @@ public class FakeStoreProductService implements ProductService{
 
         return fakeStoreProductDto1.toProduct();
     }
+
+    @Override
+    public Product setDelete(long id) throws ProductNotFoundException {
+        Product p = getSingleProduct(id);
+//        p.setDelete(id);
+//        productRepository.save(p);
+
+        return p;
+    }
 }
