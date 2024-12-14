@@ -2,7 +2,6 @@ package dev.anirudh.productservicenov24.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,4 +22,8 @@ public class Product extends BaseModel {
     @ManyToOne(cascade = {CascadeType.PERSIST})
 //    @JoinColumn(name = "category_id")
     private Category category;
+
+    public void setDelete(long id){
+        this.setIsDeleted(true);
+    }
 }

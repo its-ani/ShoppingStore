@@ -34,7 +34,7 @@ public class SelfProductService implements ProductService {
     public Product getSingleProduct(long id) throws ProductNotFoundException {
         Optional<Product> product = productRepository.findById(id);
         if(product.isEmpty()) {
-            throw new ProductNotFoundException("Product with id "+ id + "is not present in the database.");
+            throw new ProductNotFoundException("Product with id "+ id + " is not present in the database.");
         }
         return product.get();
     }
@@ -59,5 +59,14 @@ public class SelfProductService implements ProductService {
         Product createdProduct =  productRepository.save(product);
 
         return createdProduct;
+    }
+
+    @Override
+    public Product setDelete(long id) throws ProductNotFoundException {
+        Product p = getSingleProduct(id);
+        p.setDelete(id);
+        productRepository.save(p);
+
+        return p;
     }
 }

@@ -50,6 +50,12 @@ public class ProductController {
                 createProductRequestDto.getPrice());
     }
 
+
+    @PostMapping("/setDelete/{id}")
+    public Product deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+        return productService.setDelete(id);
+    }
+
 //    @ExceptionHandler(ProductNotFoundException.class)
 //    public ResponseEntity<ErrorDTO> handleProductNotFoundException(ProductNotFoundException productNotFoundException){
 //        ErrorDTO errorDTO = new ErrorDTO();
