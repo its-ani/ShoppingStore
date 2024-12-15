@@ -14,11 +14,17 @@ import java.util.Optional;
 public interface ProductRepository<ProductProjection> extends JpaRepository<Product, Long> {
     Product save(Product product);
 
-    @Override
-    List<Product> findAll();
+//    @Override
+//    List<Product> findAll();
+//
+//    @Override
+//    Optional<Product> findById(Long id);
 
-    @Override
-    Optional<Product> findById(Long id);
+    @Query("SELECT p FROM Product p WHERE p.isDeleted = false")
+    List<Product> findAllActiveProducts();
+
+    @Query("SELECT p FROM Product p WHERE p.id = :id AND p.isDeleted = false")
+    Optional<Product> findActiveById(@Param("id") Long id);
 
     List<Product> findByCategory(Category category);
 

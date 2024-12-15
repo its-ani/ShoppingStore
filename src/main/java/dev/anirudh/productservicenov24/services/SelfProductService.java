@@ -27,12 +27,12 @@ public class SelfProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findAllActiveProducts();
     }
 
     @Override
     public Product getSingleProduct(long id) throws ProductNotFoundException {
-        Optional<Product> product = productRepository.findById(id);
+        Optional<Product> product = productRepository.findActiveById(id);
         if(product.isEmpty()) {
             throw new ProductNotFoundException("Product with id "+ id + " is not present in the database.");
         }
