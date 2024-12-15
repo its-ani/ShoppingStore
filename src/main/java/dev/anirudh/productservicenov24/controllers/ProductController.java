@@ -50,9 +50,13 @@ public class ProductController {
                 createProductRequestDto.getPrice());
     }
 
-
     @PostMapping("/setDelete/{id}")
     public Product deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+        return productService.setDelete(id);
+    }
+
+    @DeleteMapping("/products/{id}")
+    public Product deleteProductID(@PathVariable("id") long id) throws ProductNotFoundException{
         return productService.setDelete(id);
     }
 }
