@@ -5,6 +5,9 @@ import dev.anirudh.productservicenov24.models.Category;
 import dev.anirudh.productservicenov24.models.Product;
 import dev.anirudh.productservicenov24.repositiories.CategoryRepository;
 import dev.anirudh.productservicenov24.repositiories.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +16,6 @@ import java.util.Optional;
 @Service("selfProductService")
 public class SelfProductService implements ProductService {
 
-//    Below lines are injecting dependencies
     private CategoryRepository categoryRepository;
     private ProductRepository productRepository;
 
@@ -22,12 +24,19 @@ public class SelfProductService implements ProductService {
         this.productRepository = productRepository;
     }
 
-//    public List<Product> findByCategory() {}
-
 
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAllActiveProducts();
+    }
+
+    public Page<Product> getProductsPaginated(int pageNumber, int pageSize) {
+        return productRepository.findAll(PageRequest.of(pageNumber, pageSize));
+    }
+
+    @Override
+    public Page<Product> getProductsPaginated(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override

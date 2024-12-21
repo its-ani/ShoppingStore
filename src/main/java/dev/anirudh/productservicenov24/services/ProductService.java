@@ -3,6 +3,8 @@ package dev.anirudh.productservicenov24.services;
 import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
 import dev.anirudh.productservicenov24.models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -16,4 +18,7 @@ public interface ProductService {
                           double price);
 
     Product setDelete(long id) throws ProductNotFoundException;
+
+    Page<Product> getProductsPaginated(int pageNumber, int pageSize);
+    Page<Product> getProductsPaginated(Pageable pageable);
 }

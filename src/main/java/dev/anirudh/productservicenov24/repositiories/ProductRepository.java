@@ -2,6 +2,8 @@ package dev.anirudh.productservicenov24.repositiories;
 
 import dev.anirudh.productservicenov24.models.Category;
 import dev.anirudh.productservicenov24.models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,6 +21,10 @@ public interface ProductRepository<ProductProjection> extends JpaRepository<Prod
 //
 //    @Override
 //    Optional<Product> findById(Long id);
+
+
+    @Override
+    Page<Product> findAll(Pageable pageable);
 
     @Query("SELECT p FROM Product p WHERE p.isDeleted = false")
     List<Product> findAllActiveProducts();
