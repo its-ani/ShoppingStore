@@ -3,6 +3,7 @@ package dev.anirudh.productservicenov24.controllers;
 import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.dtos.ErrorDTO;
 import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
+import dev.anirudh.productservicenov24.models.Category;
 import dev.anirudh.productservicenov24.models.Product;
 import dev.anirudh.productservicenov24.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +33,11 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/categories")
+    public List<Category> getAllCategories(){
+        return productService.getAllCategories();
+    }
+
     @GetMapping("/products/paginated")
     public List<Product> getAllProducts(@RequestParam("pageNumber") int pageNumber,@RequestParam("pageSize") int pageSize){
 //        Below function is sending page number and page size then creating pagable in service class.
@@ -58,6 +64,16 @@ public class ProductController {
         }
 
         return responseEntity;
+    }
+
+//    getSingleCategory
+    @GetMapping("/category/{title}")
+    public Category getSingleCategory(@PathVariable("title") String title) throws ProductNotFoundException {
+        Category category = productService.getSingleCategory(title);
+        if(category == null){
+            throw new ProductNotFoundException(title);
+        }
+        return category;
     }
 
     @PostMapping("/products")

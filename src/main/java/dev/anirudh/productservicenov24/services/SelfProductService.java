@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,10 @@ public class SelfProductService implements ProductService {
         return productRepository.findAllActiveProducts();
     }
 
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
     public Page<Product> getProductsPaginated(int pageNumber, int pageSize) {
         return productRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }
@@ -37,6 +42,14 @@ public class SelfProductService implements ProductService {
     @Override
     public Page<Product> getProductsPaginated(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    public Category getSingleCategory(String title) throws ProductNotFoundException {
+        Optional<Category> category = Optional.ofNullable(categoryRepository.findByTitle(title));
+        if (category.isEmpty()) {
+            throw new ProductNotFoundException("Category with title " + title + " is not present in the database.");
+        }
+        return category.get();
     }
 
     @Override

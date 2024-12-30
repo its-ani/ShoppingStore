@@ -3,6 +3,7 @@ package dev.anirudh.productservicenov24.services;
 import dev.anirudh.productservicenov24.dtos.CreateProductRequestDto;
 import dev.anirudh.productservicenov24.dtos.FakeStoreProductDto;
 import dev.anirudh.productservicenov24.exceptions.ProductNotFoundException;
+import dev.anirudh.productservicenov24.models.Category;
 import dev.anirudh.productservicenov24.models.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -86,6 +87,16 @@ public class FakeStoreProductService implements ProductService{
 
     @Override
     public Page<Product> getProductsPaginated(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return List.of();
+    }
+
+    @Override
+    public Category getSingleCategory(String title) throws ProductNotFoundException {
         return null;
     }
 }
