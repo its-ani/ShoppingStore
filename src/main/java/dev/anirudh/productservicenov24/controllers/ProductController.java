@@ -62,7 +62,6 @@ public class ProductController {
         else{
             responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         return responseEntity;
     }
 
