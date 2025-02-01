@@ -68,7 +68,7 @@ public class ProductController {
 //    getSingleCategory
     @GetMapping("/category/{title}")
     public Category getSingleCategory(@PathVariable("title") String title) throws ProductNotFoundException {
-        Category category = productService.getSingleCategory(title);
+        Category category = productService.getCategoryByTitle(title);
         if(category == null){
             throw new ProductNotFoundException(title);
         }

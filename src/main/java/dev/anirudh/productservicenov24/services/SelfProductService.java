@@ -35,6 +35,10 @@ public class SelfProductService implements ProductService {
         return categoryRepository.findAll();
     }
 
+    public Category getCategoryByTitle(String title) {
+        return categoryRepository.findByTitle(title);
+    }
+
     public Page<Product> getProductsPaginated(int pageNumber, int pageSize) {
         return productRepository.findAll(PageRequest.of(pageNumber, pageSize));
     }

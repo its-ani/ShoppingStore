@@ -25,4 +25,5 @@ public interface ProductService {
     Page<Product> getProductsPaginated(Pageable pageable);
     List<Category> getAllCategories();
     Category getSingleCategory(String title) throws ProductNotFoundException;
+    Category getCategoryByTitle(String title);
 }

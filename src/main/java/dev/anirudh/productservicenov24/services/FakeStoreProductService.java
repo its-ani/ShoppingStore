@@ -99,4 +99,9 @@ public class FakeStoreProductService implements ProductService{
     public Category getSingleCategory(String title) throws ProductNotFoundException {
         return null;
     }
+
+    @Override
+    public Category getCategoryByTitle(String title) {
+        return null;
+    }
 }
